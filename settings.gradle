@@ -1,0 +1,5 @@
+rootProject.name = "AndroidKotlin"
+include ':app'
+include ':HLog'
+include ':HPermission'
+include ':HDialog'

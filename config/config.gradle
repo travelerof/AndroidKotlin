@@ -1,0 +1,8 @@
+ext {
+
+    upload = [
+            url     : 'http://127.0.0.1:8081/repository/maven-releases/',
+            username: 'admin',
+            password: 'mch1314'
+    ]
+}
