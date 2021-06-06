@@ -54,7 +54,7 @@ class HPermission {
         }
 
         fun build(): RequestManager{
-            var request: IRequest = if (options.type == PermissionType.SPECIAL) SpecialRequest(mContext,options) else Request(mContext,options)
+            val request: IRequest = if (options.type == PermissionType.SPECIAL) SpecialRequest(mContext,options) else Request(mContext,options)
             RequestManager.add(request)
             return RequestManager
         }

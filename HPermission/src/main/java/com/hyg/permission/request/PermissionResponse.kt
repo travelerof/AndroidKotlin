@@ -8,6 +8,5 @@ package com.hyg.permission.request
 data class PermissionResponse(
     var requestCode: Int = 100,
     var permissions: ArrayList<String> = ArrayList(),
-    var grantResults: ArrayList<Int> = ArrayList(),
-    var code: Int = 0//成功
+    var grantResults: ArrayList<Int> = ArrayList()
 )

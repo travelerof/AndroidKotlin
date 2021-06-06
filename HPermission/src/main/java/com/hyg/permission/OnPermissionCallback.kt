@@ -6,6 +6,6 @@ package com.hyg.permission
  * @Desc
  */
 interface OnPermissionCallback {
-    fun onSuccessed(requestCode : Int, permissions : Array<String>)
+    fun onSucceeded(requestCode : Int, permissions : Array<String>)
     fun onFailed(requestCode : Int, permissions : Array<String>)
 }

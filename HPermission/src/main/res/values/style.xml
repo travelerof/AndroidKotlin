@@ -5,5 +5,10 @@
         <!---->
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnim</item>
+    </style>
+    <style name="WindowAnim">
+        <item name="android:windowEnterAnimation">@anim/translate_in</item>
+        <item name="android:windowExitAnimation">@anim/translate_out</item>
     </style>
 </resources>

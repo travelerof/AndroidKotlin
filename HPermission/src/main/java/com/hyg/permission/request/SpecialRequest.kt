@@ -1,7 +1,10 @@
 package com.hyg.permission.request
 
 import android.content.Context
+import com.hyg.permission.HPermissionUtils
+import com.hyg.permission.Permission
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @Author 韩永刚
@@ -9,13 +12,21 @@ import java.util.*
  * @Desc
  */
 class SpecialRequest(context: Context,options: RequestOptions):HRequest(context,options) {
-    override fun checkedPermission(permissions: TreeSet<String>): Array<String> {
-        TODO("Not yet implemented")
+    override fun checkedPermission(permissions: TreeSet<String>): ArrayList<String> {
+        val checkedPermissions: ArrayList<String> = ArrayList()
+        for (item in permissions){
+            when(item){
+                Permission.WINDOW_OVERLAY -> {
+                    if (!HPermissionUtils.hasOverlayPermission(getContext())) {
+                        checkedPermissions.add(item)
+                    }
+                }
+            }
+        }
+        return checkedPermissions
     }
 
-    override fun getTag(): String {
-        TODO("Not yet implemented")
-    }
+    override fun getTag(): String = "Special"
 
 
 }

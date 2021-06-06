@@ -12,7 +12,7 @@ object RequestManager : IExecuteListener {
     private var isExecute = false
     fun add(request: IRequest): Boolean {
         request.addExecuteListener(this)
-        return mRequests.add(request)
+        return mRequests.offer(request)
     }
 
     fun hasNext(): Boolean = mRequests.isNotEmpty()
@@ -25,7 +25,7 @@ object RequestManager : IExecuteListener {
     }
 
     fun request() {
-        if (isExecute || hasNext()) {
+        if (isExecute || !hasNext()) {
             return
         }
         isExecute = true
