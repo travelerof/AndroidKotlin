@@ -4,6 +4,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('F:\\Android\\test\\AndroidKotlin\\config\\keystore.jks')
+            storePassword 'k123456'
+            keyAlias 'key0'
+            keyPassword 'k123456'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 

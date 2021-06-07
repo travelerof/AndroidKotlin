@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue
  * @Desc
  */
 object RequestManager : IExecuteListener {
-    private var mRequests: LinkedBlockingQueue<IRequest> = LinkedBlockingQueue()
+    private val mRequests: LinkedBlockingQueue<IRequest> = LinkedBlockingQueue()
     private var isExecute = false
     fun add(request: IRequest): Boolean {
         request.addExecuteListener(this)

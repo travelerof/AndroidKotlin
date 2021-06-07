@@ -45,4 +45,5 @@ dependencies {
 //    implementation 'com.hyg.log:log-kotlin:0.0.1'
     implementation project(path: ':HPermission')
     implementation project(path: ':HIdentification')
+    implementation project(path: ':HDialog')
 }
