@@ -5,7 +5,6 @@ import android.Manifest
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.hyg.dialog.HDialog
 import com.hyg.identification.HIdentification
 import com.hyg.identification.OnIdentificationCallback
 import com.hyg.permission.HPermission
@@ -29,28 +28,33 @@ class MainActivity : AppCompatActivity() {
         HPermission.with(this)
             .permission(Manifest.permission.CAMERA)
             .requestCode(100)
-            .callback(object:OnPermissionCallback{
+            .callback(object : OnPermissionCallback {
                 override fun onSucceeded(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onSuccessed=======$requestCode")
+                    Log.i("test11", "=====onSuccessed=======$requestCode")
                 }
 
                 override fun onFailed(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onFailed=======$requestCode")
+                    Log.i("test11", "=====onFailed=======$requestCode")
                 }
             })
             .build()
             .request()
 
         HPermission.with(this)
-            .permissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.SEND_SMS))
+            .permissions(
+                arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.SEND_SMS
+                )
+            )
             .requestCode(101)
-            .callback(object:OnPermissionCallback{
+            .callback(object : OnPermissionCallback {
                 override fun onSucceeded(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onSuccessed=======$requestCode")
+                    Log.i("test11", "=====onSuccessed=======$requestCode")
                 }
 
                 override fun onFailed(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onFailed=======$requestCode")
+                    Log.i("test11", "=====onFailed=======$requestCode")
                 }
             })
             .build()
@@ -60,13 +64,13 @@ class MainActivity : AppCompatActivity() {
             .type(PermissionType.SPECIAL)
             .permission(Permission.WINDOW_OVERLAY)
             .requestCode(102)
-            .callback(object:OnPermissionCallback{
+            .callback(object : OnPermissionCallback {
                 override fun onSucceeded(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onSuccessed=======$requestCode")
+                    Log.i("test11", "=====onSuccessed=======$requestCode")
                 }
 
                 override fun onFailed(requestCode: Int, permissions: Array<String>) {
-                    Log.i("test11","=====onFailed=======$requestCode")
+                    Log.i("test11", "=====onFailed=======$requestCode")
                 }
             })
             .build()
@@ -75,22 +79,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun auth(){
+    private fun auth() {
         HIdentification.with(this)
-            .callback(object :OnIdentificationCallback{
+            .callback(object : OnIdentificationCallback {
                 override fun onStarted() {
-                    Log.i("test111","======onStarted=========")
+                    Log.i("test111", "======onStarted=========")
                 }
 
                 override fun onFailed(code: Int, msg: String) {
-                    Log.i("test111","======onFailed=========$code")
+                    Log.i("test111", "======onFailed=========$code")
                 }
 
                 override fun onSucceeded(msg: String) {
-                    Log.i("test111","======onSucceeded=========$msg")
+                    Log.i("test111", "======onSucceeded=========$msg")
                 }
+
                 override fun onCompleted() {
-                    Log.i("test111","======onCompleted=========")
+                    Log.i("test111", "======onCompleted=========")
                 }
             })
             .build()

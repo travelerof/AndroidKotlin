@@ -12,7 +12,7 @@ import android.view.WindowManager
  * @Desc
  */
 open class BaseDialog : Dialog {
-    constructor(context: Context) : this(context, 0)
+    constructor(context: Context) : this(context, R.style.HDialog)
 
     constructor(context: Context, themeId: Int) : super(context, themeId)
 

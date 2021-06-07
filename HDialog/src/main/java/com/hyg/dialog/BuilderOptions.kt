@@ -8,7 +8,7 @@ import android.view.View
  * @Date 2021/06/07
  * @Desc
  */
-class BuilderOptions {
+internal class BuilderOptions {
     /**
      * dialog宽高，默认为-1，使用默认值
      */
