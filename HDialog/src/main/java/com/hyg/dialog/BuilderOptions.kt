@@ -23,8 +23,8 @@ internal class BuilderOptions {
     var messageTextListener: OnTextListener? = null
     var title: CharSequence? = null
     var titleTextListener: OnTextListener? = null
-    var cancelable: Boolean = false
-    var touchOutside: Boolean = false
+    var cancelable: Boolean = true
+    var touchOutside: Boolean = true
 
     var contentView: View? = null
     var positiveText: CharSequence? = null

@@ -5,6 +5,7 @@ import android.Manifest
 import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.hyg.dialog.HDialog
 import com.hyg.identification.HIdentification
 import com.hyg.identification.OnIdentificationCallback
 import com.hyg.permission.HPermission
@@ -20,7 +21,9 @@ class MainActivity : AppCompatActivity() {
         val tv = findViewById<TextView>(R.id.main_btn)
         tv.setOnClickListener {
 //            request()
-            auth()
+//            auth()
+            dialog()
+
         }
     }
 
@@ -100,5 +103,11 @@ class MainActivity : AppCompatActivity() {
             })
             .build()
             .auth()
+    }
+
+    private fun dialog(){
+        HDialog.Builder(this)
+            .build()
+            .show()
     }
 }

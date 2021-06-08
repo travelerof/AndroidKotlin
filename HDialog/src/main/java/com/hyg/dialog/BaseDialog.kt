@@ -24,8 +24,9 @@ open class BaseDialog : Dialog {
         params?.alpha = getAlpha()
         params?.gravity = getGravity()
         val animId = getWindowAnimationStyleId()
-        if (animId != -1) {
-            params?.windowAnimations = animId
+        if (animId > 0) {
+            window?.setWindowAnimations(animId)
+//            params?.windowAnimations = animId
         }
         window?.attributes = params
     }
@@ -53,5 +54,5 @@ open class BaseDialog : Dialog {
     /**
      * dialog弹出动画，默认不设置
      */
-    protected open fun getWindowAnimationStyleId(): Int = -1
+    protected open fun getWindowAnimationStyleId(): Int = R.style.HDialog_Center_Anim
 }
