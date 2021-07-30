@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_45"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/transparent_4d000000">
+    <ImageView
+        android:id="@+id/video_portrait_play_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_video_play"
+        android:paddingLeft="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"/>
+    <TextView
+        android:id="@+id/video_portrait_current_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/white"
+        android:text="00:00"
+        android:layout_toRightOf="@id/video_portrait_play_iv" />
+    <ImageView
+        android:id="@+id/video_portrait_screen_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_screen_portrait"
+        android:paddingRight="@dimen/dimen_10"
+        android:paddingLeft="@dimen/dimen_10"
+        android:layout_alignParentRight="true"/>
+    <TextView
+        android:id="@+id/video_portrait_duration_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/white"
+        android:text="00:00"
+        android:layout_toLeftOf="@id/video_portrait_screen_iv" />
+    <com.hyg.video.ui.widget.ProgressView
+        android:id="@+id/video_portrait_progress_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:progress="10"
+        android:layout_toRightOf="@id/video_portrait_current_time_tv"
+        android:layout_toLeftOf="@id/video_portrait_duration_time_tv"/>
+</RelativeLayout>

@@ -2,23 +2,31 @@ package com.hyg.dialog
 
 import android.view.Gravity
 import android.view.View
+import android.view.WindowManager
 
 /**
  * @Author 韩永刚
  * @Date 2021/06/07
  * @Desc
  */
-internal class BuilderOptions {
+class BuilderOptions {
     /**
      * dialog宽高，默认为-1，使用默认值
      */
     var width: Int = -1
-    var height: Int = -1
+    var height: Int = WindowManager.LayoutParams.WRAP_CONTENT
 
     /**
      * 弹出位置
      */
     var gravity: Int = Gravity.CENTER
+
+    var alpha: Float = 1.0f
+
+    var windowAnimationStyleId: Int = R.style.HDialog_Center_Anim
+    /**
+     * 消息内容
+     */
     var message: CharSequence? = null
     var messageTextListener: OnTextListener? = null
     var title: CharSequence? = null

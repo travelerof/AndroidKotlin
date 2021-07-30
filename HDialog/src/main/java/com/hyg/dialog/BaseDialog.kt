@@ -11,13 +11,10 @@ import android.view.WindowManager
  * @Date 2021/06/07
  * @Desc
  */
-open class BaseDialog : Dialog {
-    constructor(context: Context) : this(context, R.style.HDialog)
+open class BaseDialog: Dialog {
+    constructor(context: Context) : this(context, R.style.BaseDialog)
 
-    constructor(context: Context, themeId: Int) : super(context, themeId)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    constructor(context: Context,themeId: Int) : super(context,themeId){
         val params: WindowManager.LayoutParams? = window?.attributes
         params?.width = getWidth()
         params?.height = getHeight()
@@ -25,8 +22,7 @@ open class BaseDialog : Dialog {
         params?.gravity = getGravity()
         val animId = getWindowAnimationStyleId()
         if (animId > 0) {
-            window?.setWindowAnimations(animId)
-//            params?.windowAnimations = animId
+            params?.windowAnimations = animId
         }
         window?.attributes = params
     }

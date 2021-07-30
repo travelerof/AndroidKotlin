@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="defaultProgressColor" format="color"/>
+    <attr name="progressColor" format="color"/>
+    <attr name="secondaryProgressColor" format="color"/>
+    <attr name="progressThumbColor" format="color"/>
+    <attr name="enProgressTouch" format="boolean"/>
+    <attr name="progressMargin" format="dimension"/>
+    <attr name="progressHeight" format="dimension"/>
+    <declare-styleable name="HVideoView">
+        <attr name="rendererType" format="integer">
+            <enum name="surface" value="0" />
+            <enum name="texture" value="1" />
+        </attr>
+        <attr name="playCore" format="integer">
+            <enum name="exo" value="0" />
+            <enum name="ijk" value="1" />
+        </attr>
+        <attr name="animatorDuration" format="integer"/>
+        <attr name="animatorClock" format="integer"/>
+        <attr name="progressColor"/>
+        <attr name="secondaryProgressColor"/>
+        <attr name="defaultProgressColor"/>
+        <attr name="progressThumbColor"/>
+        <attr name="enProgressTouch"/>
+        <attr name="progressHeight"/>
+    </declare-styleable>
+    <declare-styleable name="ProgressView">
+        <attr name="progress" format="integer"/>
+        <attr name="secondaryProgress" format="integer"/>
+        <attr name="maxProgress" format="integer"/>
+        <attr name="progressMargin"/>
+        <attr name="progressColor"/>
+        <attr name="secondaryProgressColor"/>
+        <attr name="defaultProgressColor"/>
+        <attr name="progressThumbColor"/>
+        <attr name="enProgressTouch"/>
+        <attr name="progressHeight"/>
+    </declare-styleable>
+</resources>

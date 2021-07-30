@@ -1,8 +1,7 @@
 package com.hyg.dialog
 
-import android.app.AlertDialog
 import android.content.Context
-import android.os.Build
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
@@ -16,26 +15,20 @@ import android.widget.TextView
  */
 class HDialog : BaseDialog {
 
-    private val tvTitle:TextView
+    private val options: BuilderOptions
+    private val tvTitle: TextView
     private val titleLine: View
     private val messageLayout: FrameLayout
     private val tvMessage: TextView
     private val messageLine: View
     private val bottomLayout: LinearLayout
     private val tvNegative: TextView
-    private val functionLine:View
+    private val functionLine: View
     private val tvPositive: TextView
-    private constructor(context: Context, options: BuilderOptions) : this(
-        context,
-        options,
-        R.style.HDialog
-    )
 
-    private constructor(context: Context, options: BuilderOptions, themeId: Int) : super(
-        context,
-        themeId
-    ) {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.item_dialog_layout, null)
+    private constructor(context: Context, options: BuilderOptions) : super(context) {
+        this.options = options
+        val view: View = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null)
         tvTitle = view.findViewById(R.id.dialog_title_tv)
         titleLine = view.findViewById(R.id.dialog_title_line_view)
         messageLayout = view.findViewById(R.id.dialog_message_layout)
@@ -46,37 +39,127 @@ class HDialog : BaseDialog {
         functionLine = view.findViewById(R.id.dialog_function_line)
         tvPositive = view.findViewById(R.id.dialog_positive_tv)
         setContentView(view)
-        setCancelable(options.cancelable)
-        setCanceledOnTouchOutside(options.touchOutside)
         setListener()
-
+        setOptions()
     }
 
-    private fun setListener(){
+    private fun setListener() {
         tvNegative.setOnClickListener {
-
+            options.negativeClickListener?.onClick(this, it)
         }
 
         tvPositive.setOnClickListener {
-
+            options.positiveClickListener?.onClick(this, it)
         }
     }
 
-
-    fun setTitleText(text: CharSequence){
-        tvTitle.text = text
+    private fun setOptions() {
+        setCancelable(options.cancelable)
+        setCanceledOnTouchOutside(options.touchOutside)
+        setTitleOptions()
+        setMessageOptions()
+        setContentView()
+        setPressOptions()
     }
 
-    fun setMessageText(text: CharSequence){
+    /**
+     * 初始化标题
+     */
+    private fun setTitleOptions() {
+        options.title?.let {
+            tvTitle.visibility = View.VISIBLE
+            titleLine.visibility = View.VISIBLE
+            options.titleTextListener?.onText(tvTitle)
+            tvTitle.text = it
+        } ?: let {
+            tvTitle.visibility = View.GONE
+            titleLine.visibility = View.GONE
+        }
+    }
+
+    private fun setMessageOptions() {
+        options.message?.let {
+            tvMessage.visibility = View.VISIBLE
+            messageLine.visibility = View.VISIBLE
+            options.messageTextListener?.onText(tvMessage)
+            tvMessage.text = it
+        } ?: let {
+            tvMessage.visibility = View.GONE
+            messageLine.visibility = View.GONE
+        }
+    }
+
+    private fun setContentView() {
+        options.contentView?.let {
+            tvMessage.visibility = View.GONE
+            messageLayout.addView(it)
+        }
+    }
+
+    private fun setPressOptions() {
+        if (TextUtils.isEmpty(options.negativeText) && TextUtils.isEmpty(options.positiveText)) {
+            messageLine.visibility = View.GONE
+            bottomLayout.visibility = View.GONE
+        } else if (!TextUtils.isEmpty(options.negativeText) && TextUtils.isEmpty(options.positiveText)) {
+            functionLine.visibility = View.GONE
+            tvPositive.visibility = View.GONE
+            tvNegative.text = options.negativeText
+            options.negativeTextListener?.onText(tvNegative)
+        } else if (TextUtils.isEmpty(options.negativeText) && TextUtils.isEmpty(options.positiveText)) {
+            functionLine.visibility = View.GONE
+            tvNegative.visibility = View.GONE
+            tvPositive.text = options.negativeText
+            options.positiveTextListener?.onText(tvPositive)
+        } else {
+            tvNegative.text = options.negativeText
+            tvPositive.text = options.negativeText
+            options.negativeTextListener?.onText(tvNegative)
+            options.positiveTextListener?.onText(tvPositive)
+        }
+    }
+
+    override fun getGravity(): Int = options.gravity
+
+    override fun getWidth(): Int = options.width
+
+    override fun getHeight(): Int = options.height
+
+    override fun getAlpha(): Float = options.alpha
+
+    override fun getWindowAnimationStyleId(): Int = options.windowAnimationStyleId
+
+    fun setTitleText(text: CharSequence) {
+        options.title = text
+        tvTitle.text = options.title
+    }
+
+    fun setMessageText(text: CharSequence) {
         tvMessage.text = text
     }
 
 
-    class Builder(private val context: Context, private val themeId: Int = 10) {
+    class Builder(private val context: Context) {
 
         private val mOptions = BuilderOptions()
 
-        constructor(context: Context) : this(context, -1)
+        init {
+            mOptions.width = context.resources.displayMetrics.widthPixels / 2 * 3
+        }
+
+        fun setWindowAnimationStyleId(windowAnimationStyleId: Int): Builder {
+            mOptions.windowAnimationStyleId = windowAnimationStyleId
+            return this
+        }
+
+        fun setGravity(gravity: Int): Builder {
+            mOptions.gravity = gravity
+            return this
+        }
+
+        fun setAlpha(alpha: Float): Builder {
+            mOptions.alpha = alpha
+            return this
+        }
 
         fun setWidth(width: Int): Builder {
             mOptions.width = width
@@ -155,7 +238,6 @@ class HDialog : BaseDialog {
         }
 
 
-        fun build(): HDialog =
-            if (themeId == -1) HDialog(context,mOptions) else HDialog(context, mOptions,themeId)
+        fun build(): HDialog = HDialog(context, mOptions)
     }
 }

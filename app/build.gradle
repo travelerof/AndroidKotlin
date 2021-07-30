@@ -47,4 +47,5 @@ dependencies {
     implementation project(path: ':HPermission')
     implementation project(path: ':HIdentification')
     implementation project(path: ':HDialog')
+    implementation project(path:":Video-UI")
 }

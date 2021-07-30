@@ -2,7 +2,9 @@ package com.hyg
 
 //将只有引用Bundle可以用A代替
 import android.Manifest
+import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.hyg.dialog.HDialog
@@ -12,19 +14,23 @@ import com.hyg.permission.HPermission
 import com.hyg.permission.OnPermissionCallback
 import com.hyg.permission.Permission
 import com.hyg.permission.PermissionType
+import kotlinx.android.synthetic.main.activity_main.*
 import android.os.Bundle as A
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: A?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val tv = findViewById<TextView>(R.id.main_btn)
-        tv.setOnClickListener {
-//            request()
-//            auth()
-            dialog()
-
+//        val tv = findViewById<TextView>(R.id.main_btn)
+        main_btn.setOnClickListener {
+            startActivity(Intent(this,VideoActivity::class.java))
+            MyTest(this,12).log()
         }
+//        tv.setOnClickListener {
+////            request()
+////            auth()
+//            dialog()
+//        }
     }
 
     private fun request() {
@@ -107,6 +113,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun dialog(){
         HDialog.Builder(this)
+//            .setGravity(Gravity.BOTTOM)
+//            .setWindowAnimationStyleId(R.style.HDialog_Bottom_Anim)
             .build()
             .show()
     }
